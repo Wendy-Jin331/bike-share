@@ -1,4 +1,4 @@
-#Django Project Documentation
+<h1>Django Project Documentation</h1>
 
 Once all files are installed, 
 use command python manage.py runserver and go to
@@ -6,7 +6,7 @@ http://localhost:8000/admin/login/?next=/admin/
 
 
 
-#Initial setup 
+<h2>Initial setup</h2>
 
 1. Clone the repository
 2. Open the project directory in commandline and setup venv
@@ -23,7 +23,7 @@ http://localhost:8000/admin/login/?next=/admin/
    $ python manage.py runserver
 5. you can visit your Django project in your browser by using either http://127.0.0.1:8000 or http://localhost:8000
 
-#URLs
+<h2>URLs</h2>
 
 1. To open any url make sure web server is running 
        i) use command python manage.py runserver
