@@ -5,9 +5,15 @@ from django.contrib import admin
 
 from django.contrib import admin
 from .models import Customer
-from .models import Bikes
+from .models import Bikeasset
+from .models import paycred
+from .models import Depots
+from .models import SessionPayment
 from .models import Hiresession
 
 admin.site.register(Customer)
-admin.site.register(Bikes)
+admin.site.register(Bikeasset)
 admin.site.register(Hiresession)
+admin.site.register(paycred)
+admin.site.register(Depots)
+admin.site.register(SessionPayment)

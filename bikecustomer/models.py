@@ -21,7 +21,7 @@ class Customer(models.Model):
         return self.customer_id
 
 
-class Bikes(models.Model):
+class Bikeasset(models.Model):
     bike_condition = models.IntegerField()
     current_depot = models.CharField(max_length=30)
     status = models.CharField(max_length=10)
@@ -52,17 +52,29 @@ class Hiresession(models.Model):
         verbose_name_plural = "sessions"
 
 class paycred(models.Model):
-    session_id = models.IntegerField()
+    paycred_id = models.IntegerField()
+    paycred_type = models.CharField(max_length=100)
     customer_id = models.CharField(max_length=100)
-    start_depot = models.CharField(max_length=40)
-    end_depot = models.CharField(max_length=40)
-    bike_id = models.CharField(max_length=100)
-    start_date_time = models.DateTimeField()
-    end_date_time = models.DateTimeField()
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.session_id
+        return self.paycred_id
 
-    class Meta:
-        verbose_name_plural = "sessions"
+class Depots(models.Model):
+    depot_id = models.IntegerField()
+    depot_name = models.CharField(max_length=100)
+    date_created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.depot_id
+
+
+class SessionPayment(models.Model):
+    hiresession_id = models.IntegerField()
+    payment_amount = models.IntegerField()
+    payment_id = models.IntegerField()
+    customer_id = models.CharField(max_length=100)
+    date_created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.depot_id
