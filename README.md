@@ -31,6 +31,6 @@ http://localhost:8000/admin/login/?next=/admin/
 
      | Page Title      | URL  | Description |
      | :----:      |    :----:   |   :----: |
-     | Site Admin      | http://localhost:8000/admin/login/?next=/admin/       | This is where we administrate the site.<br />Please login using below credentials <br /><br /><b>username</b> : team5 <b>password</b>: team5|
+     | Site Admin      | http://localhost:8000/admin/login/?next=/admin/       | This is where we administrate the site.<br />Please login using below credentials <br /><br /><b>username</b>: team5 <b>password</b>: team5|
      | Bike Share App   | http://localhost:8000        | To launch project |
      | Paragraph   |         |  |
