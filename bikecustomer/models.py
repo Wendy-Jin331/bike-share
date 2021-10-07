@@ -49,7 +49,7 @@ class Hiresession(models.Model):
         return self.session_id
 
     class Meta:
-        verbose_name_plural = "sessions"
+        verbose_name_plural = "Hire Session"
 
 class paycred(models.Model):
     paycred_id = models.IntegerField()
