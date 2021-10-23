@@ -5,13 +5,14 @@ from django.db import models
 from django.utils import timezone
 
 
+
 class Customer(models.Model):
     customer_name = models.CharField(max_length=60)
     password = models.CharField(max_length=30)
-    customer_dob = models.DateTimeField()
+    customer_dob = models.DateField()
     customer_id = models.CharField(max_length=100)
     customer_email = models.CharField(max_length=30)
-    customer_phone = models.IntegerField()
+    customer_phone = models.CharField(max_length=12)
     date_created = models.DateTimeField(default=timezone.now)
 
     class Meta:
@@ -40,7 +41,7 @@ class Hiresession(models.Model):
     customer_id = models.CharField(max_length=100)
     start_depot = models.CharField(max_length=40)
     end_depot = models.CharField(max_length=40)
-    bike_id = models.CharField(max_length=100)
+    bike_id = models.ForeignKey(Bikeasset,on_delete=models.CASCADE)
     start_date_time = models.DateTimeField()
     end_date_time = models.DateTimeField()
     date_created = models.DateTimeField(default=timezone.now)
@@ -54,7 +55,7 @@ class Hiresession(models.Model):
 class paycred(models.Model):
     paycred_id = models.IntegerField()
     paycred_type = models.CharField(max_length=100)
-    customer_id = models.CharField(max_length=100)
+    customer_id = models.ForeignKey(Customer,on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -66,14 +67,14 @@ class Depots(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.depot_id
+        return self.depot_name
 
 
 class SessionPayment(models.Model):
     hiresession_id = models.IntegerField()
     payment_amount = models.IntegerField()
     payment_id = models.IntegerField()
-    customer_id = models.CharField(max_length=100)
+    customer_id = models.ForeignKey(Customer,on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):

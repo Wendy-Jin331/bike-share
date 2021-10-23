@@ -15,8 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.views.generic import RedirectView
+from django.conf import settings
+from django.views.generic.base import TemplateView
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6d2dac84ac129412ef41d7dc46487383499d5a3e
     path('', include('bikecustomer.urls')),
+    #path('bikecustomer/',include('bikecustomer.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    #path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    #path('', TemplateView.as_view(template_name='hirebike.html'), name='Hire a Bike'),
+    #path('', RedirectView.as_view(url='bikecustomer/', permanent=True)),
+    #static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
+<<<<<<< HEAD
+=======
+    #path('', include('bikecustomer.urls')),
+    path('',include('bikecustomer.urls')),
+>>>>>>> 31d4a54... Added login Page created by Mao
+=======
+>>>>>>> 6d2dac84ac129412ef41d7dc46487383499d5a3e
 ]
+
