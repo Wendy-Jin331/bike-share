@@ -23,9 +23,9 @@ class Customer(models.Model):
 
 
 class Bikeasset(models.Model):
-    bike_condition = models.IntegerField()
+    bike_condition = models.BooleanField()
     current_depot = models.CharField(max_length=30)
-    status = models.CharField(max_length=10)
+    status = models.BooleanField()
     bike_id = models.CharField(max_length=100)
     date_created = models.DateTimeField(default=timezone.now)
 
