@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Starting Point</h2>
-     <p><b>Depots: </b>
-     <select id="menu1" name="Starting_Depots" class='form-control'>
-         {% for results in depots %}
-         <option disabled="true" selected>{{results.depot_name}}</option>
-         {% endfor%}
-     </select>
+<head>
+   {% block title %}<title>Hire a Bike</title>{% endblock %}
+</head>
+<body>
+   <form action="" method="POST">
+   {% csrf_token %}
+        {{ form1 }}
      </p>
-     <h2>Destination Point</h2>
-     <p><b>Depots: </b>
-     <select>
-        
-        {% for results in depots %}
-        <option   disabled="true" selected>{{results.depot_name}}</option>
-        {% endfor %}
-     </select>
+        {{ form2 }}
      </p>
-     <p>Your Bike id is </p>
-     <button onclick="location.href = '/hiresession'">Book</button>
+     <input type="submit" name="check" value="Check">
+   
+
+   <p>Your Bike id is {{ selected_bike.bike_id }}  </p>
+
+   
+      
+     <input type="submit" name="startride" value="Start Ride">
+   </form>
+</body>
 {% endblock %}
