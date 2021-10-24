@@ -11,10 +11,10 @@
      </p>
      <h2>Destination Point</h2>
      <p><b>Depots: </b>
-     <select  disabled="true" selected="true" name="Ending_Depots" class='form-control'>
+     <select>
         
         {% for results in depots %}
-        <option selected>{{results.depot_name}}</option>
+        <option   disabled="true" selected>{{results.depot_name}}</option>
         {% endfor %}
      </select>
      </p>

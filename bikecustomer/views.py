@@ -10,7 +10,7 @@ from django import forms
 def login(request):
     return render(request, 'login.html', {})
 
-def logot(request):
+def logout(request):
     return render(request, 'logout.html', {})
 
 def home(request):

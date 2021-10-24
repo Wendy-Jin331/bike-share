@@ -128,15 +128,8 @@ STATICFILES_DIRS = (
 
 
 )
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
-=======
->>>>>>> 31d4a54... Added login Page created by Mao
-=======
 
-# Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
->>>>>>> 6d2dac84ac129412ef41d7dc46487383499d5a3e
+
