@@ -117,26 +117,19 @@ STATIC_URL = '/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-STATIC_ROOT = '/pythonProject/bikecustomer/templates/static'
+STATIC_ROOT = '/4084_lb1_team5_project/bikecustomer/templates/static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #/Users/SRI$/Desktop/Glassgow
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/SRI$/Desktop/Glassgow/pythonProject/bikecustomer/templates/static',
+    '/Users/SRI$/Desktop/Glassgow/4084_lb1_team5_project/bikecustomer/templates/static',
 
 
 )
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
-=======
->>>>>>> 31d4a54... Added login Page created by Mao
-=======
 
-# Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
->>>>>>> 6d2dac84ac129412ef41d7dc46487383499d5a3e
+
