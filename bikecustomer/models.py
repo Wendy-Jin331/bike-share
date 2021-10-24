@@ -4,8 +4,6 @@ from django.db import models
 
 from django.utils import timezone
 
-
-
 class Customer(models.Model):
     customer_name = models.CharField(max_length=60)
     password = models.CharField(max_length=30)
