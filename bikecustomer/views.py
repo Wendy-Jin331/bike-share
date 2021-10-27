@@ -1,20 +1,50 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-#from .models import Bikeasset, Depots,Hiresession
+from django.contrib.auth.models import User, Group
+from django.shortcuts import redirect
+from bikecustomer.forms import *
 from .models import *
 from django import forms
 from bikecustomer.forms import *
+import random as rd
 
 # Create your views here.
+def register(request):
+    form = RegistrationForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            firstname = form.cleaned_data.get("firstname")
+            lastname = form.cleaned_data.get("lastname")
+            username = form.cleaned_data.get("username")
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            user = User.objects.create_user(username,email, password, is_active = True)
+            user.first_name = firstname
+            user.last_name = lastname
+            my_group = Group.objects.get(name='Customers') 
+            my_group.user_set.add(user)
+            user.save()  
+        return redirect('/')
+    context = {
+        'form' : form
+    }
+    return render(request, 'register.html', context=context)
+
 def login(request):
+    #if request.method == 'POST':
+        #customer = Customer.objects.filter()
+       # username = customer.objects.filter()
     return render(request, 'login.html', {})
 
+@login_required
 def logout(request):
     return render(request, 'logout.html', {})
 
+@login_required
 def home(request):
     return render(request,'home.html', {})
 
+@login_required
 def hirebike(request):
     depots= Depots.objects.all()
     bikes = Bikeasset.objects.filter(need_repair = False, status = False)
@@ -47,7 +77,7 @@ def hirebike(request):
             available_bikes = bikes.filter(current_depot=selected_depot)
             selected_bike = available_bikes[0]  
             Bikeasset.objects.filter(pk=selected_bike.bike_id).update(status= True) 
-            
+            #hiresession = Hiresession(session_id = rd.randint(1,2000),)
     context = {
         'depots' : depots,
         'bikes' : bikes,
@@ -65,9 +95,4 @@ def base(request):
 def hiresession(request):
     return render(request,'hiresession.html', {})
 
-#class depots(ListView):
-    model = Depots
-    context_object_name = 'starting depots'
 
-#class depots(forms.Form):
-    Hiresession.start_depot= forms.CharField(label='Starting point?', widget=forms.Select(choices=Depots))
