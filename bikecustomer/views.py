@@ -67,18 +67,20 @@ def hirebike(request):
     form2 = end_depotf(request.POST)
     flag = False
     error = ''
-    if request.method == 'POST' and 'check' in request.POST:
+    error1=True
+    if request.method == 'POST' and 'check' in request.POST :
         form1 = start_depotf(request.POST)
         form2 = end_depotf(request.POST)
         error = ''
         if form1.is_valid() and form2.is_valid():
             start_depot = form1.cleaned_data.get("start_depot")
-            
-            flag = True
-            selected_depot = depots.filter(depot_name=start_depot)[0]
-            available_bikes = bikes.filter(current_depot=selected_depot)
-            selected_bike = available_bikes[0]
-
+            bikesid = Bikeasset.objects.values_list('bike_id').filter(need_repair = False, status = False,current_depot =start_depot)
+            if bikesid.exists():
+                selected_depot = depots.filter(depot_name=start_depot)[0]
+                available_bikes = bikes.filter(current_depot=selected_depot)
+                selected_bike = available_bikes[0]
+            else:
+                error1=False
 
     elif request.method == 'POST' and 'startride' in request.POST:
         if flag == False:
@@ -97,12 +99,15 @@ def hirebike(request):
             hiresession.save()
             request.session["session_id"] = hiresession.session_id
             return redirect('http://127.0.0.1:8000/bikecustomer/hiresession/')
+    
+        
     context = {
         'depots' : depots,
         'bikes' : bikes,
         'form1' : form1,
         'form2' : form2,
         'error' : error,
+        'error1' : error1,
         'available_bikes' : available_bikes,
         'selected_bike' : selected_bike
         
@@ -115,7 +120,7 @@ def base(request):
 
 
 def hiresession(request):
-    current_user = request.user
+    #current_user = request.user
     session_id = request.session["session_id"]
     flag= False
     flagr= False
@@ -133,13 +138,17 @@ def hiresession(request):
         minutes = hired_time.total_seconds() / 60
         price = minutes * (5/60)
         price = round(price)
+        
     elif request.method == 'POST' and 'report' in request.POST:
         Bikeasset.objects.filter(bike_id=hiresession.bike_id.bike_id).update(need_repair = True)
         flagr = True
-        if request.method == 'POST' and 'back' in request.POST:
-            redirect('http://127.0.0.1:8000/bikecustomer/hirebike/')
+        
+    elif request.method == 'POST' and 'back' in request.POST:
+        return redirect('http://127.0.0.1:8000/bikecustomer/hirebike/')
+
     elif request.method == 'POST' and 'pay' in request.POST:
-         return redirect('http://127.0.0.1:8000/bikecustomer/payment/')
+        return redirect('http://127.0.0.1:8000/bikecustomer/payment/')
+
     context = {
         'hiresession' : hiresession,
         'hired_time' : hired_time,
