@@ -118,6 +118,7 @@ def hiresession(request):
     current_user = request.user
     session_id = request.session["session_id"]
     flag= False
+    flagr= False
     now = datetime.now(timezone.utc)
     hired_time = now
     hiresession = Hiresession.objects.filter(session_id = session_id)[0]
@@ -132,17 +133,29 @@ def hiresession(request):
         minutes = hired_time.total_seconds() / 60
         price = minutes * (5/60)
         price = round(price)
-    if request.method == 'POST' and 'pay' in request.POST:
+    elif request.method == 'POST' and 'report' in request.POST:
+        Bikeasset.objects.filter(bike_id=hiresession.bike_id.bike_id).update(need_repair = True)
+        flagr = True
+        if request.method == 'POST' and 'back' in request.POST:
+            redirect('http://127.0.0.1:8000/bikecustomer/hirebike/')
+    elif request.method == 'POST' and 'pay' in request.POST:
          return redirect('http://127.0.0.1:8000/bikecustomer/payment/')
     context = {
         'hiresession' : hiresession,
         'hired_time' : hired_time,
         'flag' : flag ,
-        'price' : price      
+        'price' : price,
+        'flagr' : flagr    
      }
     return render(request,'hiresession.html', context=context)
 
 
 def payment(request):
-    messages.error(request, "payment")
-    return render(request, 'payment.html', {})
+    flag=False
+    if request.method == 'POST' and 'pay' in request.POST:
+        flag=True
+    context={
+        'flag' : flag
+    }
+    #messages.error(request, "payment")
+    return render(request, 'payment.html', context=context)

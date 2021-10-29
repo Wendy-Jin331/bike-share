@@ -5,23 +5,28 @@
     <title>Payment</title>
 </head>
 <body>
-<form action="" method="post">
-    <!--    {% csrf_token %}-->
+<form action="" method="POST">
+    {% csrf_token %}
     <div>
         <p>Glasgow Bike Sharing Service</p>
         Amount to be paid:<input type="text" name="amount"><br>
         Credit Card:<input type="text" name="credit_card"><br>
         CVV:<input type="text" name="cvv"><br>
-        Valid Dates:<input type="text" name="dates"><br>
-        <p><input type="submit" value="Pay Now"></p>
+        <p><input type="submit" name="pay" value="Pay Now"></p>
+        {% if flag %}
+        <p>Thank you for Paying, Meet you soon</p>
+        <!--- <input type="submit" name="pay" value="click here to pay"> --->
+        {% endif %}
     </div>
 </form>
 {% if messages %}
+{% for message in messages %}
 <script>
-    {% for message in messages %}
+    
     alert('{{ msg.message }}');
-    {% endfor %}
+    
 </script>
+{% endfor %}
 {% endif %}
 </body>
 <style>
