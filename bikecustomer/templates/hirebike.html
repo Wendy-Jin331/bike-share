@@ -13,12 +13,15 @@
      </p>
      <input type="submit" name="check" value="Check">
    
-
+   {% if error1 %}
    <p>Your Bike id is {{ selected_bike.bike_id }}  </p>
+   <input type="submit" name="startride" value="Start Ride">
+   {% else %}
 
-   
-      
-     <input type="submit" name="startride" value="Start Ride">
+   <p>There is no bike at this depot, sorry</p>
+   <p>Please wait or try after some time or select different origin Depot</p>
+   {% endif %}   
+     
    </form>
 </body>
 {% endblock %}
