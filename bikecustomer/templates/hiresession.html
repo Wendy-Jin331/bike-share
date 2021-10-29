@@ -4,13 +4,15 @@
 
 <p>You will be going from {{ hiresession.start_depot }} to {{ hiresession.end_depot }}</p>
 
-<form action="POST" class="form-group">
+<form method="POST" class="form-group">
+{% csrf_token %}
 <p>Your session has now Started</p>
 
 <input type="submit" name="endride" value="End Ride">
 
 {% if flag %}
-    <p>{{ hired_time }}</p>
+    <p>{{ hired_time }} and you have to pay {{ price }} pound(s)</p>
+    <input type="submit" name="pay" value="click here to pay">
 {% endif %}
 </form>
 {% endblock %}

@@ -26,3 +26,4 @@ class RegistrationForm(ModelForm):
     class Meta:
         model = Customer
         fields = ["username", "password","dob", "email"]
+

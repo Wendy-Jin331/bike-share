@@ -49,13 +49,13 @@ class Bikeasset(models.Model):
         return str(self.bike_id)
 
 class Hiresession(models.Model):
-    session_id = models.IntegerField()
+    session_id = models.IntegerField(primary_key=True)
     customer_id = models.IntegerField()
     start_depot = models.CharField(max_length=40)
     end_depot = models.CharField(max_length=40)
     bike_id = models.ForeignKey(Bikeasset,on_delete=models.CASCADE)
     start_date_time = models.DateTimeField(default=timezone.now)
-    end_date_time = models.DateTimeField(default=None, blank=True, null=True)
+    end_date_time = models.DateTimeField(default=timezone.now, blank=True, null=True)
    
 
     def __str__(self):
