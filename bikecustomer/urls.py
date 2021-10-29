@@ -11,6 +11,7 @@ urlpatterns = [
     path('hirebike/', views.hirebike, name='Hire a Bike'),
     path('logout/', views.logout, name='Log Out'),
     path('', views.base, name='Base'),
+    path('register/', views.register, name='register'),
     path('hiresession/', views.hiresession, name='Hiresession'),
 ]
 

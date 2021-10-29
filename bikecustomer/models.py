@@ -2,13 +2,20 @@ from django.db import models
 
 # Create your models here.
 
+import uuid
+
 from django.utils import timezone
+
+from BikeShare.settings import TIME_ZONE
+
+
 
 class Customer(models.Model):
     customer_name = models.CharField(max_length=60)
     password = models.CharField(max_length=30)
     customer_dob = models.DateField()
-    customer_id = models.IntegerField(primary_key=True)
+    customer_id = models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False)
+    #customer_id = models.IntegerField(primary_key = True)
     customer_email = models.CharField(max_length=30)
     customer_phone = models.CharField(max_length=12)
     date_created = models.DateTimeField(default=timezone.now)
@@ -17,7 +24,7 @@ class Customer(models.Model):
         verbose_name_plural = "Customers"
 
     def __str__(self):
-        return str(self.customer_id)
+        return self.customer_name
 
 
 class Depots(models.Model):
@@ -43,16 +50,16 @@ class Bikeasset(models.Model):
 
 class Hiresession(models.Model):
     session_id = models.IntegerField()
-    customer_id = models.ForeignKey(Customer,on_delete=models.CASCADE, related_name="Hiresession")
+    customer_id = models.IntegerField()
     start_depot = models.CharField(max_length=40)
     end_depot = models.CharField(max_length=40)
     bike_id = models.ForeignKey(Bikeasset,on_delete=models.CASCADE)
-    start_date_time = models.DateTimeField()
-    end_date_time = models.DateTimeField()
-    date_created = models.DateTimeField(default=timezone.now)
+    start_date_time = models.DateTimeField(default=timezone.now)
+    end_date_time = models.DateTimeField(default=None, blank=True, null=True)
+   
 
     def __str__(self):
-        return self.session_id
+        return str(self.session_id)
 
     class Meta:
         verbose_name_plural = "Hire Session"

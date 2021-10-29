@@ -5,7 +5,7 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
-  <button onclick="location.href = '/hirebike'">Hire a Bike</button>
+  <a href="http://127.0.0.1:8000/bikecustomer/hirebike" class="btn">Hire a Bike</a>
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}
   <p>You are not logged in</p>

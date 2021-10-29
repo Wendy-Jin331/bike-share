@@ -2,6 +2,15 @@
 
 {% block content %}
 
-<p>You will be going from {Starting_Depots.value} to {Ending_Depots.value}</p>
+<p>You will be going from {{ hiresession.start_depot }} to {{ hiresession.end_depot }}</p>
 
+<form action="POST" class="form-group">
+<p>Your session has now Started</p>
+
+<input type="submit" name="endride" value="End Ride">
+
+{% if flag %}
+    <p>{{ hired_time }}</p>
+{% endif %}
+</form>
 {% endblock %}
