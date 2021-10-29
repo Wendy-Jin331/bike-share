@@ -9,6 +9,7 @@ from bikecustomer.forms import *
 import random as rd
 from datetime import datetime, timedelta
 from django.utils import timezone
+from django.contrib import messages
 
 # Create your views here.
 def register(request):
