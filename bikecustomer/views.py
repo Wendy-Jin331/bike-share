@@ -27,29 +27,33 @@ def register(request):
             customer.save()
             user.first_name = firstname
             user.last_name = lastname
-            my_group = Group.objects.get(name='Customers') 
+            my_group = Group.objects.get(name='Customers')
             my_group.user_set.add(user)
             user.save()  
             
         return redirect('/')
     context = {
-        'form' : form
+        'form': form
     }
     return render(request, 'register.html', context=context)
 
+
 def login(request):
-    #if request.method == 'POST':
-        #customer = Customer.objects.filter()
-       # username = customer.objects.filter()
+    # if request.method == 'POST':
+    # customer = Customer.objects.filter()
+    # username = customer.objects.filter()
     return render(request, 'login.html', {})
+
 
 @login_required
 def logout(request):
     return render(request, 'logout.html', {})
 
+
 @login_required
 def home(request):
-    return render(request,'home.html', {})
+    return render(request, 'home.html', {})
+
 
 @login_required
 def hirebike(request):
@@ -61,11 +65,11 @@ def hirebike(request):
     form1 = start_depotf(request.POST)
     form2 = end_depotf(request.POST)
     flag = False
-    error =''
+    error = ''
     if request.method == 'POST' and 'check' in request.POST:
         form1 = start_depotf(request.POST)
         form2 = end_depotf(request.POST)
-        error =''
+        error = ''
         if form1.is_valid() and form2.is_valid():
             start_depot = form1.cleaned_data.get("start_depot")
             
@@ -73,7 +77,7 @@ def hirebike(request):
             selected_depot = depots.filter(depot_name=start_depot)[0]
             available_bikes = bikes.filter(current_depot=selected_depot)
             selected_bike = available_bikes[0]
-           
+
 
     elif request.method == 'POST' and 'startride' in request.POST:
         if flag == False:
@@ -102,10 +106,12 @@ def hirebike(request):
         'selected_bike' : selected_bike
         
     }
-    return render(request,'hirebike.html', context=context)
+    return render(request, 'hirebike.html', context=context)
+
 
 def base(request):
-    return render(request,'base.html', {})
+    return render(request, 'base.html', {})
+
 
 def hiresession(request):
     current_user = request.user
@@ -136,3 +142,6 @@ def hiresession(request):
     return render(request,'hiresession.html', context=context)
 
 
+def payment(request):
+    messages.error(request, "payment")
+    return render(request, 'payment.html', {})
