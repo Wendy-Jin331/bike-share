@@ -105,4 +105,5 @@ def hiresession(request):
 
 
 def payment(request):
-    messages.success(request, "payment")
+    messages.error(request, "payment")
+    return render(request, 'payment.html', {})
