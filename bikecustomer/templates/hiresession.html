@@ -2,6 +2,17 @@
 
 {% block content %}
 
-<p>You will be going from {Starting_Depots.value} to {Ending_Depots.value}</p>
+<p>You will be going from {{ hiresession.start_depot }} to {{ hiresession.end_depot }}</p>
 
+<form method="POST" class="form-group">
+{% csrf_token %}
+<p>Your session has now Started</p>
+
+<input type="submit" name="endride" value="End Ride">
+
+{% if flag %}
+    <p>{{ hired_time }} and you have to pay {{ price }} pound(s)</p>
+    <input type="submit" name="pay" value="click here to pay">
+{% endif %}
+</form>
 {% endblock %}
