@@ -10,6 +10,7 @@ import random as rd
 from datetime import datetime, timedelta
 from django.utils import timezone
 from django.contrib import messages
+from stdnum import luhn
 
 
 # Create your views here.
@@ -165,10 +166,21 @@ def hiresession(request):
 
 def payment(request):
     flag = False
-    if request.method == 'POST' and 'pay' in request.POST:
-        flag = True
+    if request.method == 'POST':
+        credit_card = request.POST.get('credit_card')
+        if luhn.is_valid(credit_card):
+            flag = True  # return HttpResponse('Successful! Thanks for your payment!')
+        else:
+            flag = False  # return HttpResponse('Credit card input error!')
     context = {
         'flag': flag
     }
-    # messages.error(request, "payment")
-    return render(request, '1payment.html', context=context)
+    return render(request, 'payment.html', context=context)
+    # return render(request, 'payment.html')
+    # flag = False
+    # if request.method == 'POST' and 'pay' in request.POST:
+    #     flag = True
+    # context = {
+    #     'flag': flag
+    # }
+    # return render(request, 'payment.html', context=context)
