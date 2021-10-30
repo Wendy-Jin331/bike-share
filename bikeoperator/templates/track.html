@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<head>
+    {% block title %}Track{% endblock %}
+ </head>
+
+ <body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form }}
+    </p>
+        <input type="submit" name="check" value="Check">
+    {% if check %}
+        {% if status and not repair %}
+            <p> {{ bikes_id.bike_id }} started from {{ cur_depot }} and is currently on the way </p>
+        {% elif repair %}
+            <p> {{ bikes_id}} is at {{ cur_depot }} and it requires Repair </p>
+            <input type="submit" name="repair" value="Go to Repair Page to Repair">
+        {% else %}
+            <p> {{ bikes_id }} is at {{ cur_depot }} </p>
+            <input type="submit" name="move" value="Move">
+        {% endif %}
+    {% endif %}
+    </form>
+ </body>
+
+
+{% endblock %}
