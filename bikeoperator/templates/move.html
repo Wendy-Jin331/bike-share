@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<head>
+    {% block title %}Home{% endblock %}
+ </head>
+
+ <body>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <p>
+      {{ form }}
+      </p>
+      <p>
+      {{ form1 }}
+      </p>
+      {% if bikes_id %}
+      <p>The {{ bikes_id }} is at {{ cur_depot }} </p>
+      {% endif %}
+
+      <input type="submit" name="move" value="Move">
+
+      {% if move %}
+      <p>The {{ bikes_id }} has been moved to {{ move_depot }} </p>
+      {% endif %}
+      
+    </form>
+ </body>
+
+
+{% endblock %}

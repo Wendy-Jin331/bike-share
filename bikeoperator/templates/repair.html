@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<head>
+    {% block title %}Home{% endblock %}
+ </head>
+
+ <body>
+    <form action="" method="POST">
+      {% csrf_token %}
+    <p>
+       {{ form }}
+    </p>
+            
+    <input type="submit" name="repair" value="Repair">
+    {% if repair %}
+    <p> {{ bikes_id.bike_id }} has been repaired</p>
+    {% endif %}
+    </form>
+ </body>
+
+
+{% endblock %}

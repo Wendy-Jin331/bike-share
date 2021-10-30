@@ -140,7 +140,7 @@ def hiresession(request):
         price = round(price)
         
     elif request.method == 'POST' and 'report' in request.POST:
-        Bikeasset.objects.filter(bike_id=hiresession.bike_id.bike_id).update(need_repair = True)
+        Bikeasset.objects.filter(bike_id=hiresession.bike_id.bike_id).update(need_repair = True, status = False)
         flagr = True
         
     elif request.method == 'POST' and 'back' in request.POST:

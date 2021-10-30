@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<head>
+    {% block title %}Home{% endblock %}
+ </head>
+
+ <body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" name="track" value="Track">
+        <input type="submit" name="repair" value="Repair">
+        <input type="submit" name="move" value="Move">
+    </form>
+ </body>
+
+
+{% endblock %}
