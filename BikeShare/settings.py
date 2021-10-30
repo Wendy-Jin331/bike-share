@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bikeoperator.apps.BikeoperatorConfig',
     'bikecustomer.apps.BikecustomerConfig',
     'django.contrib.admin',
     'django.contrib.auth',
