@@ -9,10 +9,16 @@
 <p>Your session has now Started</p>
 
 <input type="submit" name="endride" value="End Ride">
-
+<input type="submit" name="report" value="Report">
 {% if flag %}
     <p>{{ hired_time }} and you have to pay {{ price }} pound(s)</p>
     <input type="submit" name="pay" value="click here to pay">
+{% endif %}
+
+{% if flagr %}
+     <p>Issue has been Recorded</p>
+     <p>Go back to select for new bike</p>
+     <input type="submit" name="back" value="Back">
 {% endif %}
 </form>
 {% endblock %}
