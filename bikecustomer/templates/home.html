@@ -4,9 +4,11 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <a href="http://127.0.0.1:8000/bikecustomer/hirebike" class="btn">Hire a Bike</a>
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  Hi {{ user.username }}!<br><br>
+<!--  <a href="http://127.0.0.1:8000/bikecustomer/hirebike" class="btn">Hire a Bike</a>-->
+  <a href="http://127.0.0.1:8000/bikecustomer/hirebike"><input type=button value="Hire a Bike"></a>
+<!--  <p><a href="{% url 'logout' %}">Log Out</a></p>-->
+  <p><a href="{% url 'logout' %}"><input type=button value="Log Out"></a></p>
 {% else %}
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">Log In</a>
