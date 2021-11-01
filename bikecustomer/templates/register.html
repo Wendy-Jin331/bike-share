@@ -1,10 +1,24 @@
-{% block title %}Create an Account{% endblock %}
+<div>{% block title %}Create an Account{% endblock %}</div>
+<style>
+    div {
+        width: 300px; /*Width setting fixed value*/
+        margin: 100px auto;
+    }
+</style>
 
 {% block content %}
     <form method="POST" class="form-group">
         {% csrf_token %}
+        <div>
         {{ form }}
         <br/>
         <button type="submit" class="btn btn-success">Register</button>
+        </div>
     </form>
-{% endblock %} 
+    <style>
+    div {
+        width: 300px; /*Width setting fixed value*/
+        margin: 100px auto;
+    }
+    </style>
+{% endblock %}

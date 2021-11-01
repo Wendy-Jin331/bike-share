@@ -6,9 +6,17 @@
   <title>{% block title %}Bike Sharing App{% endblock %}</title>
 </head>
 <body>
+<div>
   <main>
     {% block content %}
     {% endblock %}
   </main>
+</div>
 </body>
+<style>
+    div {
+        width: 300px; /*Width setting fixed value*/
+        margin: 100px auto;
+    }
+</style>
 </html>
