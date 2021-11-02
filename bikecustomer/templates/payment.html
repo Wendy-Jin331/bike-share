@@ -9,12 +9,15 @@
     {% csrf_token %}
     <div>
         <p>Glasgow Bike Sharing Service</p>
-        Amount to be paid:<input type="text" name="amount"><br>
+        Amount to be paid: {{ price }} <br>
         Credit Card:<input type="text" name="credit_card"><br>
         CVV:<input type="text" name="cvv"><br>
         <p><input type="submit" name="pay" value="Pay Now"></p>
         {% if flag %}
         <p>Thank you for Paying, Meet you soon</p>
+        {% else %}
+
+        <p>Credit Card is invalid, Please try again</p>
         <!--- <input type="submit" name="pay" value="click here to pay"> --->
         {% endif %}
     </div>

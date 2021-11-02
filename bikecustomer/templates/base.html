@@ -7,8 +7,16 @@
 </head>
 <body>
   <main>
+    <center>
     {% block content %}
+      <form method="POST">
+        <input type="submit" name="user" value="User">
+        <input type="submit" name="operator" value="Operator">
+        <input type="submit" name="manager" value="Manager">
+
+      </form>
     {% endblock %}
+  </center>
   </main>
 </body>
 </html>

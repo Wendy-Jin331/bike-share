@@ -123,7 +123,7 @@ def move(request):
         if flag==False:
             error = 'Choose bike id'
         move = True
-        Bikeasset.objects.filter(bike_id = bikes_id.bike_id).update(current_depot = move_depot)
+        Bikeasset.objects.filter(bike_id = bikes_id.bike_id).update(current_depot = move_depot.depot_id)
     context = {
         'form' : form,
         'move' : move,

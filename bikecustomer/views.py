@@ -163,6 +163,8 @@ def payment(request):
     flag=False
     if request.method == 'POST' and 'pay' in request.POST:
         flag=True
+    else:
+        flag= False
     context={
         'flag' : flag
     }
