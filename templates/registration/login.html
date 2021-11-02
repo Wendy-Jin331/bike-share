@@ -27,12 +27,19 @@
         <td>{{ form.password }}</td>
       </tr>
     </table>
-    <input type="submit" value="login" />
+    <div align="center"><input type="submit" value="login" /></div>
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
+  <style>
+    table {
+        width: 150px; /*Width setting fixed value*/
+        margin: 100px auto;
+    }
+  </style>
 
   {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-  <a href="http://127.0.0.1:8000/bikecustomer/register" class="btn">Sign up</a>
-  
+<!--  <div align="center"><p><a href="{% url 'password_reset' %}">Lost password?</a></p></div>-->
+  <div align="center"><p><a href="{% url 'password_reset' %}"><input type=button value="Lost password?"></a></p></div>
+<!--  <div align="center"><a href="http://127.0.0.1:8000/bikecustomer/register" class="btn">Sign up</a></div>-->
+  <div align="center"><a href="http://127.0.0.1:8000/bikecustomer/register"><input type=button value="Sign Up"></a></div>
 {% endblock %}

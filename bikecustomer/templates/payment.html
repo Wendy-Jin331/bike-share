@@ -5,29 +5,34 @@
     <title>Payment</title>
 </head>
 <body>
-<form action="" method="POST">
+<form action="{% url 'payment' %}" method="POST">
     {% csrf_token %}
     <div>
         <p>Glasgow Bike Sharing Service</p>
-        Amount to be paid:<input type="text" name="amount"><br>
+        Amount to be paid:<br>
         Credit Card:<input type="text" name="credit_card"><br>
+        Name:<input type="text" name="name"><br>
         CVV:<input type="text" name="cvv"><br>
         <p><input type="submit" name="pay" value="Pay Now"></p>
+<!--        <p><input type="submit" name="back" value="Back"></p>-->
+        <a href="http://127.0.0.1:8000/bikecustomer/hirebike/"><input type=button value="Back"></a>
         {% if flag %}
-        <p>Thank you for Paying, Meet you soon</p>
+        <p>Thanks for your payment!</p>
+        {% else %}
+        <p>Invalid credit card number, please try again!</p>
         <!--- <input type="submit" name="pay" value="click here to pay"> --->
         {% endif %}
     </div>
 </form>
-{% if messages %}
-{% for message in messages %}
-<script>
-    
-    alert('{{ msg.message }}');
-    
-</script>
-{% endfor %}
-{% endif %}
+<!--{% if messages %}-->
+<!--{% for message in messages %}-->
+<!--<script>-->
+
+<!--    alert('{{ msg.message }}');-->
+
+<!--</script>-->
+<!--{% endfor %}-->
+<!--{% endif %}-->
 </body>
 <style>
     div {
