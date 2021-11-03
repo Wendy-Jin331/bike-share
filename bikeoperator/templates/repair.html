@@ -4,7 +4,7 @@
 
 {% block content %}
 <head>
-    {% block title %}Home{% endblock %}
+    <h1>Repair Bike</h1>
  </head>
 
  <body>
@@ -15,8 +15,10 @@
     </p>
             
     <input type="submit" name="repair" value="Repair">
-    {% if repair %}
+    {% if repair and not f %}
     <p> {{ bikes_id.bike_id }} has been repaired</p>
+    {% elif f %}
+    <p> {{ messages }}</p>
     {% endif %}
     </form>
  </body>

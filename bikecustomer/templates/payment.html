@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <title>Payment</title>
 </head>
 <body>
-<form action="" method="POST">
+
+<form action="{% url 'payment' %}" method="POST">
     {% csrf_token %}
     <div>
-        <p>Glasgow Bike Sharing Service</p>
-        Amount to be paid: {{ price }} <br>
+        <p>Public Bike Sharing System</p>
+        Amount to be paid: {{ price }}<br>
         Credit Card:<input type="text" name="credit_card"><br>
+        Name:<input type="text" name="name"><br>
         CVV:<input type="text" name="cvv"><br>
+       
         <p><input type="submit" name="pay" value="Pay Now"></p>
-        {% if flag %}
-        <p>Thank you for Paying, Meet you soon</p>
-        {% else %}
-
-        <p>Credit Card is invalid, Please try again</p>
+       
+<!--        <p><input type="submit" name="back" value="Back"></p>-->
+        
+        {% if flag and pay %}
+        
+        <p>Thanks for your payment!</p>
+    
+        {% elif not flag and pay %}
+        <p>Invalid credit card number, please try again!</p>
         <!--- <input type="submit" name="pay" value="click here to pay"> --->
         {% endif %}
     </div>
 </form>
-{% if messages %}
-{% for message in messages %}
-<script>
-    
-    alert('{{ msg.message }}');
-    
-</script>
-{% endfor %}
-{% endif %}
+<!--{% if messages %}-->
+<!--{% for message in messages %}-->
+<!--<script>-->
+
+<!--    alert('{{ msg.message }}');-->
+
+<!--</script>-->
+<!--{% endfor %}-->
+<!--{% endif %}-->
 </body>
 <style>
     div {

@@ -1,10 +1,19 @@
-{% block title %}Create an Account{% endblock %}
+<center>
+<h1>{% block title %}Create an Account{% endblock %}</h1>
 
 {% block content %}
     <form method="POST" class="form-group">
         {% csrf_token %}
-        {{ form }}
+        <div>
+        {{ form.as_p }}
         <br/>
         <button type="submit" class="btn btn-success">Register</button>
+        </div>
+        {% if t %}
+        <p>{{ m }}</p>
+        {% elif l %}
+        <p> {{ m }} </p>
+        {% endif %}
     </form>
-{% endblock %} 
+
+{% endblock %}

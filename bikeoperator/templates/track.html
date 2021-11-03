@@ -4,7 +4,7 @@
 
 {% block content %}
 <head>
-    {% block title %}Track{% endblock %}
+    <h1>Track Bike</h1>
  </head>
 
  <body>
@@ -13,10 +13,13 @@
         {{ form }}
     </p>
         <input type="submit" name="check" value="Check">
-    {% if check %}
+    {% if f %}
+    <p> {{ messages }} </p>
+    {% endif %}
+    {% if check and not f%}
         {% if status and not repair %}
             <p> {{ bikes_id.bike_id }} started from {{ cur_depot }} and is currently on the way </p>
-        {% elif repair %}
+        {% elif repair and not f %}
             <p> {{ bikes_id}} is at {{ cur_depot }} and it requires Repair </p>
             <input type="submit" name="repair" value="Go to Repair Page to Repair">
         {% else %}

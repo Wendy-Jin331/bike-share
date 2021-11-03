@@ -6,19 +6,44 @@
 
 <form method="POST" class="form-group">
 {% csrf_token %}
+{% if not flag %}
 <p>Your session has now Started</p>
 
 <input type="submit" name="endride" value="End Ride">
+{% endif %}
+<p>
+
+</p>
+{% if not flag %}
 <input type="submit" name="report" value="Report">
-{% if flag %}
-    <p>{{ hired_time }} and you have to pay {{ price }} pound(s)</p>
+{% endif %}
+<p>
+
+</p>
+{% if minutes <= 1 and not flag %}
+<input type="submit" name="cancel" value="Cancel Ride">
+{% endif %}
+{% if c %}
+<p> {{ messages }} </p>
+{% endif %}
+{% if flag and not mv %}
+    <p> Your session has now ended </p>
+    <p>You have hired bike for {{ hired_time }} and you have to pay {{ price }} pound(s)</p>
     <input type="submit" name="pay" value="click here to pay">
+{% endif %}
+{% if mv %}
+<p> {{ m }}</p>
+<p> Go back to Start a new ride</p>
+<input type="submit" name="back" value="Back">
 {% endif %}
 
 {% if flagr %}
      <p>Issue has been Recorded</p>
      <p>Go back to select for new bike</p>
      <input type="submit" name="back" value="Back">
+{% endif %}
+{% if c %}
+<input type="submit" name="back" value="Back">
 {% endif %}
 </form>
 {% endblock %}

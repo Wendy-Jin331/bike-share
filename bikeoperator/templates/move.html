@@ -4,7 +4,7 @@
 
 {% block content %}
 <head>
-    {% block title %}Home{% endblock %}
+    {% block title %}<h1>Move Bike</h1>{% endblock %}
  </head>
 
  <body>
@@ -16,16 +16,23 @@
       <p>
       {{ form1 }}
       </p>
-      {% if bikes_id %}
+      {% if bikes_id and b %}
       <p>The {{ bikes_id }} is at {{ cur_depot }} </p>
       {% endif %}
-
+      <p>
       <input type="submit" name="move" value="Move">
-
-      {% if move %}
+      </p>
+      {% if f %}
+      <p>
+         {{ messages }}
+      </p>
+      {% endif %}
+      {% if move and not f and b %}
       <p>The {{ bikes_id }} has been moved to {{ move_depot }} </p>
       {% endif %}
-      
+      <p>
+         <input type="submit" name="home" value="Go back to Home">
+      </p>
     </form>
  </body>
 

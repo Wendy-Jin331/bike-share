@@ -2,14 +2,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+  {% include 'messages.html' %} 
   <meta charset="utf-8">
   <title>{% block title %}Bike Sharing App{% endblock %}</title>
 </head>
 <body>
+  
+<div>
   <main>
     <center>
     {% block content %}
+    <h1>Public Bike Sharing System</h1>
       <form method="POST">
+        {% csrf_token %}
         <input type="submit" name="user" value="User">
         <input type="submit" name="operator" value="Operator">
         <input type="submit" name="manager" value="Manager">
@@ -18,5 +23,12 @@
     {% endblock %}
   </center>
   </main>
+</div>
 </body>
+<style>
+    div {
+        width: 300px; /*Width setting fixed value*/
+        margin: 100px auto;
+    }
+</style>
 </html>
