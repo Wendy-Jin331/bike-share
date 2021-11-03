@@ -6,36 +6,115 @@
     <title>Payment</title>
 </head>
 <body>
-
-<form action="{% url 'payment' %}" method="POST">
-    {% csrf_token %}
-    <div>
-        <p>Public Bike Sharing System</p>
-        Amount to be paid: {{ price }}<br>
-        Credit Card:<input type="text" name="credit_card"><br>
-        Name:<input type="text" name="name"><br>
-        CVV:<input type="text" name="cvv"><br>
-       
-        <p><input type="submit" name="pay" value="Pay Now"></p>
-       
-<!--        <p><input type="submit" name="back" value="Back"></p>-->
-        
-        {% if flag and pay %}
-        
-        <p>Thanks for your payment!</p>
-    
-        {% elif not flag and pay %}
-        <p>Invalid credit card number, please try again!</p>
-        <!--- <input type="submit" name="pay" value="click here to pay"> --->
-        {% endif %}
+<div class="wrapper">
+    <div class="title">
+        <center>
+            <h1>Payment</h1>
+        </center>
     </div>
-</form>
+    <div class="form">
+        <center>
+        <form action="{% url 'payment' %}" method="POST">
+            {% csrf_token %}
+            
+            <div>
+                Amount to be paid: {{ price }}<br/><br/>
+            <div class="pay-form">
+                <div class="credit">
+                    <p style="text-align:center">Credit Card</p> <input style="border-radius:1px; padding-left: 10px;font-size: 16px;" type="text" name="credit_card"></br></br>
+                </div>
+                <div class="name">
+                    <p style="text-align:center">Name</p> <input style="border-radius:1px; padding-left: 10px;font-size: 16px;" type="text" name="name"></br></br>
+                </div>
+                <div class="cvv">
+                    <p style="text-align:center">CVV</p> <input style="border-radius:1px; padding-left: 10px;font-size: 16px;" type="text" name="cvv"></br></br>
+                </div>
+            </div>
+                <input class="input-pay" type="submit" name="pay" value="Pay Now">
+            
+        <!--        <p><input type="submit" name="back" value="Back"></p>-->
 
+                {% if flag and pay %}
+
+                <p>Thanks for your payment!</p>
+            
+                {% elif not flag and pay %}
+                <p>Invalid credit card number, please try again!</p>
+                <!--- <input type="submit" name="pay" value="click here to pay"> --->
+                {% endif %}
+            </div>
+        </form>
+        </center>
+    </div>
+</div>
 </body>
 <style>
-    div {
-        width: 150px; /*Width setting fixed value*/
-        margin: 100px auto;
+    html, body {
+      margin: 0px;
+      padding: 0px;
+      min-height: 100%;
+      height: 100%;
+    }
+    p {
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .wrapper {
+      display: grid;
+      grid-template-rows: auto auto;
+    }
+    .title {
+      color: #549287;
+      font-family:arial,sans-serif;
+    }
+    .form{
+        margin-top: 50px;
+    }
+    .input-pay{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:40px;
+      width:200px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+      margin-top: 20px;
+    }
+    .input-pay:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+    .pay-form{
+        display: grid;
+        grid-template-rows: auto auto auto;
+        background-color: #549287;
+        border-radius: 1px;
+        color: white;
+        box-shadow: 0 2px 6px 0 rgba(0,0,0, .3);
+        margin-left: 20px;
+        width: 800px;
+        padding: 10px;
+        padding-top: 30px;
+        padding-right: 20px;
+    }
+    .credit{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .name{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .cvv{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 </style>
 </html>

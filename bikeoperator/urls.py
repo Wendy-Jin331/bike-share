@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.views.generic import RedirectView
 
 urlpatterns = [
-path('login-operator/', views.loginop, name='login'),
+path('loginop/', views.loginop, name='login'),
 path('homeop/', views.homeop, name='Home page'),
 path('track/', views.track, name='Track a Bike'),
 path('repair/', views.repair, name='Repair a Bike'),

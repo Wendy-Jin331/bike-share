@@ -50,6 +50,10 @@ def homemgr(request):
     graphics = []
     sessions = Hiresession.objects.all()
     depots = Depots.objects.all()
+
+    date_start = timezone.now()
+    date_end = timezone.now()
+
     depot_dict = dict((depot.depot_name, len([i for i in sessions.filter(start_depot = depot)])) for depot in depots)
 
     graphics.append(

@@ -11,10 +11,11 @@ import random as rd
 from datetime import datetime, timedelta
 from django.utils import timezone
 from django.contrib import messages
+from django.views.decorators.cache import cache_control
 #from django.contrib.messages import constants as messages
 from stdnum import luhn
 import time
-
+from django.views.decorators.cache import cache_control
 
 
 # Create your views here.
@@ -43,7 +44,10 @@ def register(request):
                 my_group = Group.objects.get(name='Customers')
                 my_group.user_set.add(user)
                 user.save()
-                return redirect('/')
+                return redirect('/bikecustomer/hirebike')
+        if request.method == 'POST' and 'home' in request.POST:
+            return redirect('http://127.0.0.1:8000/bikecustomer/')
+    
     except AttributeError:
         l=True
         m1='Please enter values in fields'
@@ -66,6 +70,9 @@ def login(request):
     # if request.method == 'POST':
     # customer = Customer.objects.filter()
     # username = customer.objects.filter()
+    if request.method == 'POST' and 'home' in request.POST:
+        return redirect('http://127.0.0.1:8000/bikecustomer/')
+    
     return render(request, 'login.html', {})
 
 
@@ -78,7 +85,7 @@ def logout(request):
 def home(request):
     return render(request, 'home.html', {})
 
-
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 @login_required
 def hirebike(request):
     depots = Depots.objects.all()
@@ -91,6 +98,10 @@ def hirebike(request):
     flag = False
     error = ''
     error1 = True
+    if request.method == 'POST' and 'home' in request.POST:
+        return redirect('http://127.0.0.1:8000/bikecustomer/home/')
+    if request.method == 'POST' and 'logout' in request.POST:
+        return redirect('http://127.0.0.1:8000/accounts/logout/')
     if request.method == 'POST' and 'check' in request.POST:
         form1 = start_depotf(request.POST)
         form2 = end_depotf(request.POST)
@@ -125,7 +136,7 @@ def hirebike(request):
             hiresession.save()
             request.session["session_id"] = hiresession.session_id
             return redirect('http://127.0.0.1:8000/bikecustomer/hiresession/')
-
+    
     context = {
         'depots': depots,
         'bikes': bikes,
@@ -143,14 +154,15 @@ def hirebike(request):
 def base(request):
     if request.method == 'POST' and 'user' in request.POST: 
         if request.user.is_authenticated:
-            return redirect('http://127.0.0.1:8000/bikecustomer/hirebike/')
+            return redirect('http://127.0.0.1:8000/bikecustomer/home/')
         else:
             return redirect('http://127.0.0.1:8000/accounts/login/')
     elif request.method == 'POST' and 'operator' in request.POST:
-        return redirect('http://127.0.0.1:8000/bikeoperator/homeop/')
+        return redirect('http://127.0.0.1:8000/bikeoperator/loginop')
     return render(request, 'base.html', {})
 
-
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+@login_required
 def hiresession(request):
     # current_user = request.user
     session_id = request.session["session_id"]
@@ -164,6 +176,7 @@ def hiresession(request):
     m = " Payment not required as price is zero"
     mv=  False
     c= False
+    tflag = False
     messages=''
     if request.method == 'POST' and 'endride' in request.POST:
         # Hiresession.objects.filter(session_id = session_id).update(end_date_time = timezone.now)
@@ -188,10 +201,15 @@ def hiresession(request):
     elif request.method == 'POST' and 'pay' in request.POST:
         return redirect('http://127.0.0.1:8000/bikecustomer/payment/')
         
-    elif request.method == 'POST' and 'cancel' in request.POST and minutes <= 1:
+    elif request.method == 'POST' and 'cancel' in request.POST:
         c= True
-        messages = " Ride has been cancelled press back to book ride again"
-
+        hired_time = now - hiresession.start_date_time
+        minutes = hired_time.total_seconds() / 60
+        tflag = True if minutes < 1 else False
+        if tflag:
+            messages = " Ride has been cancelled press back to book ride again"
+        else:
+            messages = "Your time for cancellation has lasped. Please end the ride and pay the remaining charges."
     context = {
         'hiresession': hiresession,
         'hired_time': hired_time,
@@ -202,11 +220,12 @@ def hiresession(request):
         'price': price,
         'flagr': flagr,
         'messages':messages,
-        'minutes':minutes
+        'minutes':minutes,
+        'tflag': tflag
     }
     return render(request, 'hiresession.html', context=context )
 
-
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def payment(request):
     flag = False
     pay= False
@@ -218,12 +237,12 @@ def payment(request):
         if luhn.is_valid(credit_card):
             flag = True  # return HttpResponse('Successful! Thanks for your payment!')
             paycred.objects.all().update(paycred_id =rd.randint(1, 2000),paycred_type="Credit Card",customer_id=current_user.id,)
-           
+            return redirect('http://127.0.0.1:8000/bikecustomer/paymentsuccess')
         else:
             flag = False  # return HttpResponse('Credit card input error!')
     if flag == True:
         
-        return redirect('http://127.0.0.1:8000/bikecustomer/home/')
+        return redirect('http://127.0.0.1:8000/bikecustomer/')
 
     context = {
         'flag': flag,
@@ -232,6 +251,9 @@ def payment(request):
         'sl': time.sleep(10)
     }
     return render(request, 'payment.html', context=context)
+
+def paymentsuccess(request):
+    return render(request, 'payment_success.html', {})
     # return render(request, 'payment.html')
     # flag = False
     # if request.method == 'POST' and 'pay' in request.POST:

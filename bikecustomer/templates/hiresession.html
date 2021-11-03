@@ -1,49 +1,217 @@
-{% extends 'base.html' %}
 
 {% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Bike Sharing App{% endblock %}</title>
+</head>
+<body>
+    <center>
+        
+    <div class="wrapper">
+        <div class="title">
+            <h1>Session Details</h1>
+        </div>
+        
+        <div class="stub">
+            <img width="300" height="200" src="https://i.pinimg.com/originals/24/ae/8d/24ae8def288851503cf68340df174963.gif"/>
+            {% if not flag %}
+                <p>Your session has now Started. Please Enjoy the ride!</p>
+            {% endif %}
+            {% if flag and not mv %}
+                <p> Your session has now ended. Thank you for riding with us. We hope you had a good time! </p>
+            {% endif %}
+        </div>
+        <div class="inner-wrapper">
+            <div class="trip-details">
+                <p>You will be going from</p> <h3><img width="14" height="20" src="https://www.pinclipart.com/picdir/big/363-3639653_location-pin-transparent-location-logo-png-vector-clipart.png"/> {{ hiresession.start_depot }}</h3>
+                <p> to </p>
+                <h3><img width="14" height="20"src="https://www.pinclipart.com/picdir/big/363-3639653_location-pin-transparent-location-logo-png-vector-clipart.png"/>  {{ hiresession.end_depot }}</h3>
+            </div>
+            <div class="form">
+            <form method="POST" class="form-group">
+                {% csrf_token %}
+                {% if not flag %}        
+                <input class="input-end" type="submit" name="endride" value="End Ride">
+                {% endif %}
+                <p>
+                
+                </p>
+                {% if not flag %}
+                <input class="input-report" type="submit" name="report" value="Report">
+                {% endif %}
+                <p>
+                
+                </p>
+                {% if not flag %}
+                <input class="input-cancel" type="submit" name="cancel" value="Cancel Ride">
+                {% endif %}
+                {% if c %}
+                <p> {{ messages }} </p>
+                {% endif %}
+                {% if flag and not mv %}
+                    <p>You have hired bike for {{ hired_time }} and you have to pay {{ price }} pound(s)</p>
+                    <input class="input-pay" type="submit" name="pay" value="click here to pay">
+                {% endif %}
+                {% if mv %}
+                <p> {{ m }}</p>
+                <p> Go back to Start a new ride</p>
+                <input class="input-back" type="submit" name="back" value="Back">
+                {% endif %}
 
-<p>You will be going from {{ hiresession.start_depot }} to {{ hiresession.end_depot }}</p>
+                {% if flagr %}
+                     <p>Issue has been Recorded</p>
+                     <p>Go back to select for new bike</p>
+                     <input class="input-back" type="submit" name="back" value="Back">
+                {% endif %}
+                {% if c and tflag %}
+                <input class="input-back" type="submit" name="back" value="Back">
+                {% endif %}
+            </form>
+            </div>
+        </div>
+    </div>
+</center>
 
-<form method="POST" class="form-group">
-{% csrf_token %}
-{% if not flag %}
-<p>Your session has now Started</p>
-
-<input type="submit" name="endride" value="End Ride">
-{% endif %}
-<p>
-
-</p>
-{% if not flag %}
-<input type="submit" name="report" value="Report">
-{% endif %}
-<p>
-
-</p>
-{% if minutes <= 1 and not flag %}
-<input type="submit" name="cancel" value="Cancel Ride">
-{% endif %}
-{% if c %}
-<p> {{ messages }} </p>
-{% endif %}
-{% if flag and not mv %}
-    <p> Your session has now ended </p>
-    <p>You have hired bike for {{ hired_time }} and you have to pay {{ price }} pound(s)</p>
-    <input type="submit" name="pay" value="click here to pay">
-{% endif %}
-{% if mv %}
-<p> {{ m }}</p>
-<p> Go back to Start a new ride</p>
-<input type="submit" name="back" value="Back">
-{% endif %}
-
-{% if flagr %}
-     <p>Issue has been Recorded</p>
-     <p>Go back to select for new bike</p>
-     <input type="submit" name="back" value="Back">
-{% endif %}
-{% if c %}
-<input type="submit" name="back" value="Back">
-{% endif %}
-</form>
+</body>
+<style>
+    html, body {
+      margin: 0px;
+      padding: 0px;
+      min-height: 100%;
+      height: 100%;
+    }
+    p {
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .wrapper {
+      display: grid;
+      grid-template-rows: auto auto auto;
+    }
+    .title {
+      color: #549287;
+      font-family:arial,sans-serif;
+    }
+    .inner-wrapper{
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      margin-top: 20px;
+    }
+    .trip-details{
+      background-color: #549287;
+      border-radius: 1px;
+      color: white;
+      box-shadow: 0 2px 6px 0 rgba(0,0,0, .3);
+      margin-left: 20px;
+    }
+    .form{
+        margin-top: 20px;
+    }
+    .input-end{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:30px;
+      width:150px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .input-end:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }  
+    .input-report{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:30px;
+      width:150px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .input-report:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+    
+    .input-cancel{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:30px;
+      width:150px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .input-cancel:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+    
+    .input-pay{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:30px;
+      width:150px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .input-pay:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+    
+    .input-back{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:30px;
+      width:150px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .input-back:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+</style>
+</html>
 {% endblock %}

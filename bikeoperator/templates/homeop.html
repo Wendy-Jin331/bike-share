@@ -1,34 +1,96 @@
 
-
 {% block content %}
-
-<center>
+<!DOCTYPE html>
+<html>
 <head>
-    <h1>Welcome Mr. Operator</h1>
- </head>
-<p>
-
-
-
-</p>
- <body>
+  <meta charset="utf-8">
+  <title>{% block title %}Operator{% endblock %}</title>
+</head>
+<body>
+<div class="wrapper">
+  <div class="title">
+    <p style="margin-left: 10px;"><a href="http://127.0.0.1:8000/bikecustomer/"><input class="input-home" type=button name="back" value="Back"></a></p>
+    <center><h1>Welcome Operator</h1></center>
+    <p><a href="http://127.0.0.1:8000/bikeoperator/loginop"><input class="input-logout" type=button value="Log Out"></a></p>
+  </div>
+    <center><img src="http://cdn.onlinewebfonts.com/svg/img_507427.png" width=200 height=200/></center>
     <form action="" method="POST">
         {% csrf_token %}
-        <input type="submit" name="track" value="Track">
-        <p>
-
-        </p>
-        <input type="submit" name="repair" value="Repair">
-        <p>
-            
-        </p>
-        <input type="submit" name="move" value="Move">
-        <p>
-
-        </p>
-        <input type="submit" name="back" value="Back">
+        <center>
+        <div class="form-group">
+            <input class="input-home" type="submit" name="track" value="Track">   
+            <input class="input-home" type="submit" name="repair" value="Repair">       
+            <input class="input-home" type="submit" name="move" value="Move">
+        </div>
+    </center>
     </form>
+</div>
  </body>
-</center>
-
+ <style>
+     html, body {
+      margin: 0px;
+      padding: 0px;
+      min-height: 100%;
+      height: 100%;
+    }
+    .wrapper {
+      display: grid;
+      grid-template-rows:auto auto;
+    }
+    .title{
+      color: #6148F5;
+      font-family:arial,sans-serif;
+      display:grid;
+      grid-template-columns: 200px 1fr 200px;
+   }
+   .form-group{
+        display: grid;
+        grid-template-columns:auto auto auto;
+        width:60%;
+        margin-top:20px;
+        margin-left:120px;
+   }
+  .input-home{
+    color:#6148F5;
+    background:white;
+    border-color: #6148F5;
+    border-radius:40px;
+    border-width: 1px;
+    height:40px;
+    width:160px;
+    font:bold40px arial,sans-serif;
+    text-shadow:none;
+    font-size: 14px;
+    font-family:arial,sans-serif;
+    margin-left: 10px;
+  }
+  .input-home:hover{
+    background:#6148F5;
+    color:#fff;
+    border-radius:40px;
+    border-width: 1px;
+    text-shadow:none;
+  }
+  .input-logout{
+      color:white;
+      background:#6148F5;
+      border-color: #6148F5;
+      border-radius:40px;
+      border-width: 1px;
+      height:40px;
+      width:160px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .input-logout:hover{
+      background:white;
+      color:#6148F5;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+ </style>
+</html>
 {% endblock %}

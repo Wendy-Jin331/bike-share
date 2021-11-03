@@ -1,35 +1,150 @@
-{% extends 'base.html' %}
 
 {% block content %}
+<!DOCTYPE html>
+<html>
 <head>
    {% block title %}<title>Hire a Bike</title>{% endblock %}
 </head>
-<!---<style>
-   body{
 
-   }
-</style>--->
 <body>
-   <form action="" method="POST">
-   {% csrf_token %}
-        {{ form1 }}
-     </p>
-        {{ form2 }}
-     </p>
-     <input type="submit" name="check" value="Check">
-      <p>
+   <div class="wrapper">
+      <center>
+      <div class="title">
+          <form method='POST' style="margin-top: 10px;">
+          {% csrf_token %}
+            <input class="input-home" type="submit" name="home" value="Back">
+          </form>
+         <h1 style="margin-right: 0px">Hire a Bike</h1>
+         <p><a href="{% url 'logout' %}"><input class="input-logout" type=button value="Log Out"></a></p>
+       </div>
+      <form action="" method="POST">
+      {% csrf_token %}
+           {{ form1 }}
+        </p>
+           {{ form2 }}
+        </p>
+        <input class="input-check" type="submit" name="check" value="Check">
+         <p>
 
-      </p>
-      
-   {% if error1 %}
-   <p>Your Bike id is {{ selected_bike.bike_id }}  </p>
-   <input type="submit" name="startride" value="Start Ride">
-   {% else %}
+         </p>
 
-   <p>There is no bike at this depot, sorry</p>
-   <p>Please wait or try after some time or select different origin Depot</p>
-   {% endif %}   
-     
-   </form>
+      {% if error1 %}
+      <p>Your Bike id is {{ selected_bike.bike_id }}  </p>
+      <input class="input-start" type="submit" name="startride" value="Start Ride">
+      {% else %}
+
+      <p>There is no bike at this depot, sorry</p>
+      <p>Please wait or try after some time or select different origin Depot</p>
+      {% endif %}   
+    </form>
+    <p> Note that you can only cancel the ride within 1 minute of starting the session. Please check the vehicle carefully before initiating the ride.</p> 
+   </center>
+</div>
 </body>
+<style>
+   html, body {
+      margin: 0px;
+      padding: 0px;
+      min-height: 100%;
+      height: 100%;
+    }
+    .wrapper {
+      display: grid;
+      min-height: 100%;
+      height: auto !important;
+      grid-template-rows:auto auto auto;
+      margin-bottom: -50x;
+    }
+    .title {
+      color: #549287;
+      font-family:arial,sans-serif;
+    }
+    .input-check{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:30px;
+      width:150px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .input-check:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+    .input-start{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:30px;
+      width:150px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+    }
+    .input-start:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+    .title{
+    display:grid;
+    grid-template-columns: 200px 1fr 200px;
+  }
+  .input-logout{
+    color:white;
+    background:#549287;
+    border-color: #549287;
+    border-radius:40px;
+    border-width: 1px;
+    height:40px;
+    width:160px;
+    font:bold40px arial,sans-serif;
+    text-shadow:none;
+    font-size: 14px;
+    font-family:arial,sans-serif;
+    margin-top: 10px;
+  }
+  .input-logout:hover{
+    background:white;
+    color:#549287;
+    border-radius:40px;
+    border-width: 1px;
+    text-shadow:none;
+  }
+  .input-home{
+    color:#549287;
+    background:white;
+    border-color: #549287;
+    border-radius:40px;
+    border-width: 1px;
+    height:40px;
+    width:160px;
+    font:bold40px arial,sans-serif;
+    text-shadow:none;
+    font-size: 14px;
+    font-family:arial,sans-serif;
+    margin-top: 10px;
+  }
+  .input-home:hover{
+    background:#549287;
+    color:#fff;
+    border-radius:40px;
+    border-width: 1px;
+    text-shadow:none;
+  }
+</style>
+</html>
 {% endblock %}

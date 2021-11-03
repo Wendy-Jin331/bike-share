@@ -11,9 +11,9 @@ import random as rd
 from datetime import datetime, timedelta
 from django.utils import timezone
 from django.contrib import messages
+from django.views.decorators.cache import cache_control
 
 # Create your views here.
-
 
 def homeop(request):
     if request.method == 'POST' and 'track' in request.POST:
@@ -23,7 +23,7 @@ def homeop(request):
     elif request.method == 'POST' and 'move' in request.POST:
         return redirect('http://127.0.0.1:8000/bikeoperator/move/')
     elif request.method == 'POST' and 'back' in request.POST:
-            return redirect('http://127.0.0.1:8000/bikecustomer/home/')
+            return redirect('http://127.0.0.1:8000/bikecustomer/')
     return render(request,'homeop.html',{})
 
 def track(request):
@@ -173,6 +173,7 @@ def move(request):
     }
     return render(request,'move.html',context = context)
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def loginop(request):
     form = logino(request.POST)
     error = ''
