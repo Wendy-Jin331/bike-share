@@ -3,9 +3,7 @@ from django.db import models
 # Create your models here.
 
 import uuid
-
 from django.utils import timezone
-
 from BikeShare.settings import TIME_ZONE
 
 
@@ -66,7 +64,7 @@ class Hiresession(models.Model):
 
 
 class paycred(models.Model):
-    paycred_id = models.IntegerField()
+    paycred_id = models.IntegerField(primary_key=True)
     paycred_type = models.CharField(max_length=100)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='paycred')
     date_created = models.DateTimeField(default=timezone.now)

@@ -1,0 +1,48 @@
+
+{% block content %}
+
+<head>
+    <h1>Welcome Mr. Manager</h1>
+ </head>
+<p>
+
+</p>
+ <body>
+  
+
+    {% autoescape off %}
+        {{ plot_div }}
+    {% endautoescape %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>
+            Generate Report for Most popular Depots
+        </p>
+        <input type="submit" name="gen1" value="Generate">
+        <p>
+           
+        </p>
+        <p>
+            Number of Bikes in each Depot
+        </p>
+        <input type="submit" name="gen2" value="Generate">
+        <p>
+            
+        </p>
+        <p>
+            Number of Bikes repaired per week
+        </p>
+        <input type="submit" name="gen3" value="Generate">
+        <p>
+
+        </p>
+        <p>
+            
+        </p>
+        <input type="submit" name="gen4" value="Generate">
+    </form>
+
+ </body>
+
+{% endblock %}

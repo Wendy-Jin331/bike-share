@@ -1,45 +1,171 @@
-
-
-{% block content %}
-
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Bike Sharing App{% endblock %}</title>
+</head>
+<body>
+<div class="wrapper">
+  <div class="title">
+    <center><h1 >Public Bike Sharing System</h1></center>
+  </div>
+  {% block content %}
   {% if form.errors %}
     <p>Your username and password didn't match. Please try again.</p>
   {% endif %}
 
   {% if next %}
     {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
+      <center><p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p></center>
     {% else %}
-      <p>Please login to see this page.</p>
+      <center><p>Please login to see this page.</p></center>
     {% endif %}
   {% endif %}
-
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
-    <div align="center"><input type="submit" value="login" /></div>
-    <input type="hidden" name="next" value="{{ next }}" />
-  </form>
-  <style>
-    table {
-        width: 150px; /*Width setting fixed value*/
-        margin: 100px auto;
-    }
-  </style>
-
-  {# Assumes you setup the password_reset view in your URLconf #}
-<!--  <div align="center"><p><a href="{% url 'password_reset' %}">Lost password?</a></p></div>-->
-  <div align="center"><p><a href="{% url 'password_reset' %}"><input type=button value="Lost password?"></a></p></div>
-<!--  <div align="center"><a href="http://127.0.0.1:8000/bikecustomer/register" class="btn">Sign up</a></div>-->
-  <div align="center"><a href="http://127.0.0.1:8000/bikecustomer/register"><input type=button value="Sign Up"></a></div>
+  <div class="form">
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <center>
+      <p style="margin-left: 10px;"><a href="http://127.0.0.1:8000/bikecustomer/"><input class="input-home" type=button value="Home"></a></p>
+      <img src="https://ak.picdn.net/shutterstock/videos/1009588595/thumb/1.jpg" width=440 height=250/>
+      <div class="login-form">
+        <div class="username">
+          <p style="text-align:right;margin-right:10px;">{{ form.username.label_tag }}</p>
+          <p style="text-align:left;border-radius:1px; padding-left: 10px;font-size: 16px;">{{ form.username }}</p>
+        </div>
+        <div class="password">
+          <p style="text-align:right;margin-right:10px;">{{ form.password.label_tag }}</p>
+          <p style="text-align:left;border-radius:1px; padding-left: 10px;font-size: 16px;">{{ form.password }}</p>
+        </div>
+      </div>
+      <input class="input-login" type="submit" value="Login" />
+      <div class="buttons">
+        <input class="input-next" type="hidden" name="next" value="{{ next }}" />
+        <p><a href="http://127.0.0.1:8000/bikecustomer/register"><input class="input-signup" type=button value="Sign Up"></a></p>
+        <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+      </div>
+      </center>
+    </form>
+  </div>
 {% endblock %}
+</div>
+</body>
+<style>
+    html, body {
+      margin: 0px;
+      padding: 0px;
+      min-height: 100%;
+      height: 100%;
+    }
+    .wrapper {
+      display: grid;
+      min-height: 100%;
+      grid-template-rows:auto auto;
+    }
+    .form-wrapper {
+      display: grid;
+      grid-template-columns:1fr 1fr;
+    }
+    .form {
+      grid-column: 1;
+      display: grid;
+      grid-template-rows:auto auto;
+      background-color: white;
+    }
+    .login-form{
+      display: grid;
+      grid-template-rows: auto auto auto;
+      background-color: #549287;
+      border-radius: 1px;
+      color: white;
+      box-shadow: 0 2px 6px 0 rgba(0,0,0, .3);
+      margin-left: 20px;
+      width: 600px;
+      padding: 10px;
+      padding-top: 30px;
+      padding-right: 20px;
+      margin-top: 20px;
+    }
+    .username{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .password{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .buttons{
+      display:grid;
+      grid-template-rows: auto auto auto;
+    }
+    .input-login{
+      color:white;
+      background:#549287;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:40px;
+      width:160px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+      margin-top: 20px;
+    }
+    .input-login:hover{
+      background:white;
+      color:#549287;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+    .input-signup{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:40px;
+      width:160px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 14px;
+      font-family:arial,sans-serif;
+      margin-top: 10px;
+    }
+    .input-signup:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+    .title{
+      color: #549287;
+      font-family:arial,sans-serif;
+    display:grid;
+  }
+  .input-home{
+    color:#549287;
+    background:white;
+    border-color: #549287;
+    border-radius:40px;
+    border-width: 1px;
+    height:40px;
+    width:160px;
+    font:bold40px arial,sans-serif;
+    text-shadow:none;
+    font-size: 14px;
+    font-family:arial,sans-serif;
+    margin-left: 10px;
+  }
+  .input-home:hover{
+    background:#549287;
+    color:#fff;
+    border-radius:40px;
+    border-width: 1px;
+    text-shadow:none;
+  }
+
+</style>
+</html>

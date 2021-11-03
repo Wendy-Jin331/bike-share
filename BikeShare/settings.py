@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bikemanager.apps.BikemanagerConfig',
     'bikeoperator.apps.BikeoperatorConfig',
     'bikecustomer.apps.BikecustomerConfig',
     'django.contrib.admin',
@@ -118,7 +119,7 @@ STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 STATIC_ROOT = '/4084_lb1_team5_project/bikecustomer/templates/static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #/Users/SRI$/Desktop/Glassgow
@@ -132,6 +133,6 @@ STATICFILES_DIRS = (
 )
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/bikecustomer/home'
 
  

@@ -1,17 +1,96 @@
-{% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+<div class="wrapper">
+      {% block content %}
+  <div class="title">
+    <p style="margin-left:10px;"><a href="http://127.0.0.1:8000/bikecustomer/"><input class="input-hire" type=button value="Home"></a></p>
+    <center><h1 style="margin-right: 0px;">Public Bike Sharing System</h1></center>
+    <p><a href="{% url 'logout' %}"><input class="input-logout" type=button value="Log Out"></a></p>
+  </div>
+  <center><img src="https://ak.picdn.net/shutterstock/videos/1009588595/thumb/1.jpg" width=440 height=250/></center>
 {% if user.is_authenticated %}
+  <center>
   Hi {{ user.username }}!<br><br>
-<!--  <a href="http://127.0.0.1:8000/bikecustomer/hirebike" class="btn">Hire a Bike</a>-->
-  <a href="http://127.0.0.1:8000/bikecustomer/hirebike"><input type=button value="Hire a Bike"></a>
-<!--  <p><a href="{% url 'logout' %}">Log Out</a></p>-->
-  <p><a href="{% url 'logout' %}"><input type=button value="Log Out"></a></p>
+  <a href="http://127.0.0.1:8000/bikecustomer/hirebike"><input class="input-hire" type=button value="Hire a Bike"></a>
+  </center>
 {% else %}
+  <center>
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">Log In</a>
+  </center>
 {% endif %}
 {% endblock %}
+</body>
+<style>
+  html, body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100%;
+    height: 100%;
+  }
+  .wrapper {
+    display: grid;
+    min-height: 100%;
+    height: auto !important;
+    margin-bottom: -50x;
+  }
+  .title {
+    color: #549287;
+    font-family:arial,sans-serif;
+  }
+  .input-hire{
+    color:#549287;
+    background:white;
+    border-color: #549287;
+    border-radius:40px;
+    border-width: 1px;
+    height:40px;
+    width:160px;
+    font:bold40px arial,sans-serif;
+    text-shadow:none;
+    font-size: 14px;
+    font-family:arial,sans-serif;
+    margin-top: 10px;
+  }
+  .input-hire:hover{
+    background:#549287;
+    color:#fff;
+    border-radius:40px;
+    border-width: 1px;
+    text-shadow:none;
+  }
+  .title{
+    display:grid;
+    grid-template-columns: 200px 1fr 200px;
+  }
+
+  .input-logout{
+    color:white;
+    background:#549287;
+    border-color: #549287;
+    border-radius:40px;
+    border-width: 1px;
+    height:40px;
+    width:160px;
+    font:bold40px arial,sans-serif;
+    text-shadow:none;
+    font-size: 14px;
+    font-family:arial,sans-serif;
+    margin-top: 10px;
+  }
+  .input-logout:hover{
+    background:white;
+    color:#549287;
+    border-radius:40px;
+    border-width: 1px;
+    text-shadow:none;
+  }
+</style>
+</html>
+
 
