@@ -2,33 +2,142 @@
 <!DOCTYPE html>
 <html>
 <head>
-  {% include 'messages.html' %} 
   <meta charset="utf-8">
   <title>{% block title %}Bike Sharing App{% endblock %}</title>
 </head>
 <body>
   
-<div>
+<div class="wrapper">
   <main>
-    <center>
     {% block content %}
-    <h1>Public Bike Sharing System</h1>
-      <form method="POST">
-        {% csrf_token %}
-        <input type="submit" name="user" value="User">
-        <input type="submit" name="operator" value="Operator">
-        <input type="submit" name="manager" value="Manager">
-
-      </form>
-    {% endblock %}
+    <center>
+    <div class="title">
+      <h1>Public Bike Sharing System</h1>
+    </div>
   </center>
+    <div class="form-wrapper">
+      <div class="form">
+        <center>
+        <form id="bike-form" method="POST">
+          {% csrf_token %}
+          <div class="user-wrapper">
+            <input class="userbtn" type="submit" name="user" value="Hire a Bike">
+          </div>
+          <div class="admin-wrapper">
+            <input class="admin-btn" type="submit" name="operator" value="Log in as Operator">
+          </div>
+        </form>
+      </center>
+      </div>
+      <div class="tuts">
+        <center><h2>How to</h2></center>
+        <ol class="tut-list">
+          <li>Click on Hire a Bike button to login or hire a bike</li>
+          <li>Select Start and Final Destination</li>
+          <li>Check if the Bike is available at the location</li>
+          <li>Click on start ride to begin</li>
+        </ol>
+      </div>
+    </div>
+    <div class="footer">
+    </div>
+    {% endblock %}
   </main>
 </div>
 </body>
 <style>
-    div {
-        width: 300px; /*Width setting fixed value*/
-        margin: 100px auto;
+    html, body {
+      margin: 0px;
+      padding: 0px;
+      min-height: 100%;
+      height: 100%;
     }
+    .wrapper {
+      display: grid;
+      min-height: 100%;
+      height: auto !important;
+      grid-template-rows:auto auto auto;
+      margin-bottom: -50x;
+    }
+    .title {
+      color: #549287;
+      font-family:arial,sans-serif;
+    }
+    .form-wrapper {
+      grid-row: 1;
+      display: grid;
+      grid-template-columns:1fr 1fr;
+      height: 100%;
+    }
+    .form {
+      grid-column: 1;
+      display: grid;
+      grid-template-rows:auto auto;
+      background-color: white;
+    }
+    .user-wrapper {
+      margin-top: 100px;
+      margin-bottom: 10px;
+    }
+    .userbtn{
+      color:#549287;
+      background:white;
+      border-color: #549287;
+      border-radius:40px;
+      border-width: 1px;
+      height:70px;
+      width:300px;
+      font:bold40px arial,sans-serif;
+      text-shadow:none;
+      font-size: 20px;
+      font-family:arial,sans-serif;
+    }
+    .userbtn:hover{
+      background:#549287;
+      color:#fff;
+      border-radius:40px;
+      border-width: 1px;
+      text-shadow:none;
+    }
+    .admin-wrapper {
+    }
+    .admin-btn {
+      background:none!important;
+      border:none; 
+      padding:0!important;
+      font-family:arial,sans-serif;
+      color:#069;
+      cursor:pointer;
+      font-size: 16px;
+      margin-top: 4px;
+    }
+    .admin-btn:hover{
+      text-decoration:underline;
+    }
+    .tuts {
+      background-color: #549287;
+      border-radius: 1px;
+      color: white;
+      box-shadow: 0 2px 6px 0 rgba(0,0,0, .3);
+      margin-right: 20px;
+    }
+    ol {
+      margin-left: 100px;
+    }
+    li {
+      color: white;
+      font-size: 18px;
+      line-height: 30px;
+      text-align: justify;
+      letter-spacing: 1px;
+      font-family: 'Raleway', serif;
+    }
+    .footer {
+      grid-row: 1;
+      height: 50px;
+      border-top: 1px;
+      border-color: black;
+    }
+
 </style>
 </html>

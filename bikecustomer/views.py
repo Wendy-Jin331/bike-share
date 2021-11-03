@@ -142,9 +142,12 @@ def hirebike(request):
 
 def base(request):
     if request.method == 'POST' and 'user' in request.POST: 
-        return redirect('http://127.0.0.1:8000/accounts/login/')
+        if request.user.is_authenticated:
+            return redirect('http://127.0.0.1:8000/bikecustomer/hirebike/')
+        else:
+            return redirect('http://127.0.0.1:8000/accounts/login/')
     elif request.method == 'POST' and 'operator' in request.POST:
-        return redirect('http://127.0.0.1:8000/bikeoperator/')
+        return redirect('http://127.0.0.1:8000/bikeoperator/homeop/')
     return render(request, 'base.html', {})
 
 
@@ -219,7 +222,7 @@ def payment(request):
         else:
             flag = False  # return HttpResponse('Credit card input error!')
     if flag == True:
-        messages.success(request, 'Payment was successful')
+        
         return redirect('http://127.0.0.1:8000/bikecustomer/home/')
 
     context = {
