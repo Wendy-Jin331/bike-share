@@ -29,7 +29,10 @@ http://localhost:8000/admin/login/?next=/admin/
 
 1. Run the admin_refactored.py in admin folder in any Python IDE such as Spyder or any other IDE
 
-2. Enter date in YYYY-MM-DD format for the starting and ending dates. The program returns an error if the date is not formatted properly, and if there is corresponding data the graph will be displayed as a popup
+2. Run this command in python console
+   pip install numpy==1.19.2
+
+3. Enter date in YYYY-MM-DD format for the starting and ending dates. The program returns an error if the date is not formatted properly, and if there is corresponding data the graph will be displayed as a popup
 
 <h2>URLs</h2>
 

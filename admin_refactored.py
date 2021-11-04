@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[12]:
-
-
 import tkinter as tk
 from tkinter import ttk
 from tkinter import * 
@@ -13,10 +7,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import re
-import os
+
+#GUI Designed with python gui-builder (http://www.python-gui-builder.com/)
 
 root = tk.Tk()
 
+#Function that checks the 
 def check_format(input):
     return (re.match('[0-9]{4}-[0-9]{2}-[0-9]{2}',input))
 
@@ -24,20 +20,20 @@ def check_format(input):
 def query():
     start = getStart()
     end = getEnd()
-    print(start)
-    print(end)
+   # print(start)
+   # print(end)
     
         
-    with sqlite3.connect('db.sqlite3') as db:cursor=db.cursor()
-    query = "SELECT start_date_time,start_depot, COUNT(session_id) FROM bikecustomer_hiresession WHERE start_date_time BETWEEN datetime ("+ start +") AND datetime("+ end +") GROUP BY start_date_time, start_depot"
-        #this is the connection to the local DB sqlite file. Change it as needed
-    print(query)
+    with sqlite3.connect('test_db.sqlite3') as db:cursor=db.cursor()
+    query = "SELECT start_date_time,start_depot, COUNT(session_id) FROM bikecustomer_session WHERE start_date_time BETWEEN datetime ("+ start +") AND datetime("+ end +") GROUP BY start_date_time, start_depot"
+    #this is the connection to the local DB sqlite file. Change it as needed
+    #print(query)
     queryResult = cursor.execute(query)
     df = pd.DataFrame(queryResult)
         #print(df)
     tab = pd.crosstab(df[0],df[1], values=df[2],aggfunc='sum')
     tab = tab.fillna(0)
-    print(tab)
+    #print(tab)
         #tab.plot(kind='bar', stacked=True)
         
     root2 = tk.Toplevel()
@@ -54,22 +50,24 @@ def query():
 
 # this is a function to get the user input from the text input box
 def getStart():
-    top = tk.Tk()
+    
     userInput = startdate.get()
     if(check_format(userInput)):
         return '\''+userInput+'\''
     else:
+        top = tk.Tk()
         top.geometry("300x150")
         messagebox.showwarning("Please input format as yyyy-mm-dd")
         top.mainloop()
         
 # this is a function to get the user input from the text input box
 def getEnd():
-    top = tk.Tk()
+    
     userInput = enddate.get()
     if(check_format(userInput)):
         return '\''+userInput+'\''
     else:
+        top = tk.Tk()
         top.geometry("300x150")
         messagebox.showwarning("Please input format as yyyy-mm-dd")
         top.mainloop()
@@ -107,10 +105,3 @@ Label(root, text='To', bg='#F0F8FF', font=('arial', 12, 'normal')).place(x=239, 
 
 
 root.mainloop()
-
-
-# In[ ]:
-
-
-
-
