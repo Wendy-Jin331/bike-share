@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Oct 31 15:00:01 2021
-
-@author: SRI$
-"""
-
 #!/usr/bin/env python
 # coding: utf-8
+
+# In[5]:
+
 
 import sqlite3
 import tkinter as tk
@@ -18,8 +14,8 @@ import matplotlib
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 
-start_date = ''
-end_date = ''
+start_date
+end_date
 
 # this is a function to get the user input from the text input box
 def getStart():
@@ -35,7 +31,7 @@ def getEnd():
 
 # this is the function called when the button is clicked
 def btnQuery():
-    con = sqlite3.connect('C:/Users/SRI$/Desktop/Glassgow/4084_lb1_team5_project/db.sqlite3')
+    con = sqlite3.connect('E:/Glasgow/bikeshare_1/4084_lb1_team5_project-master/dbsqlite3.db')
     #this is the connection to the local DB sqlite file. Change it as needed
     
 
@@ -127,8 +123,8 @@ class GraphPage_1wk(tk.Frame):
         
         self.place(x=0, y=116, anchor="nw", width=800, height=550)
         
-        with sqlite3.connect('C:/Users/SRI$/Desktop/Glassgow/4084_lb1_team5_project/db.sqlite3') as db:cursor=db.cursor()
-        query = "SELECT start_date_time,start_depot, COUNT(session_id)  FROM bikecustomer_hiresession WHERE DATE(start_date_time) >= DATE('now', 'weekday 0', '-7 days')  GROUP BY start_date_time, start_depot  ORDER BY start_date_time"
+        with sqlite3.connect('E:/Glasgow/bikeshare_1/4084_lb1_team5_project-master/db.sqlite3') as db:cursor=db.cursor()
+        query = "SELECT start_date_time,start_depot, COUNT(session_id)  FROM bikecustomer_session WHERE DATE(start_date_time) >= DATE('now', 'weekday 0', '-7 days')  GROUP BY start_date_time, start_depot  ORDER BY start_date_time"
         #this is the connection to the local DB sqlite file. Change it as needed
         queryResult = cursor.execute(query)
         df = pd.DataFrame(queryResult)
@@ -164,8 +160,8 @@ class GraphPage_custom(tk.Frame):
         
         self.place(x=0, y=116, anchor="nw", width=800, height=550)
         
-        with sqlite3.connect('C:/Users/SRI$/Desktop/Glassgow/4084_lb1_team5_project/db.sqlite3') as db:cursor=db.cursor()
-        query = "SELECT start_date_time,start_depot, COUNT(session_id)  FROM bikecustomer_hiresession WHERE DATE(start_date_time) >= DATE('now', 'weekday 0', '-7 days')  GROUP BY start_date_time, start_depot  ORDER BY start_date_time"
+        with sqlite3.connect('E:/Glasgow/bikeshare_1/4084_lb1_team5_project-master/db.sqlite3') as db:cursor=db.cursor()
+        query = "SELECT start_date_time,start_depot, COUNT(session_id)  FROM bikecustomer_session WHERE DATE(start_date_time) >= DATE('now', 'weekday 0', '-7 days')  GROUP BY start_date_time, start_depot  ORDER BY start_date_time"
         #this is the connection to the local DB sqlite file. Change it as needed
         queryResult = cursor.execute(query)
         df = pd.DataFrame(queryResult)
@@ -188,6 +184,7 @@ app = Adminpage()
 app.mainloop()
 
 
+# In[ ]:
 
 
 #code to display depots. Did it in CSV, but call from DB usign pymysql or other 
@@ -204,22 +201,25 @@ connection = pymysql.connect(host='localhost',
                              cursorclass=pymysql.cursors.DictCursor)
 
 
+# In[ ]:
 
 
 with connection:
     with connection.cursor() as cursor:
         # Create a new record
-        sql = "SELECT * FROM bikecustomer_hiresession"
+        sql = "SELECT * FROM session"
         cursor.execute(sql)
 result = cursor.fetchall()
 df = (pd.DataFrame(result))
 
 
+# In[ ]:
 
 
 df.head(5)
 
 
+# In[ ]:
 
 
 df2 = df
@@ -227,23 +227,27 @@ df2['start_datetime'] = pd.to_datetime(df['start_datetime']).dt.date
 df2.head(5)
 
 
+# In[ ]:
 
 
 tab = pd.crosstab(df2.start_datetime, df2.start_depot,margins=True, margins_name="Total")
 tab.head(10)
 
 
+# In[ ]:
 
 
 df3=tab[:-1]
 df3.head(10)
 
 
+# In[ ]:
 
 
 df3.plot(kind='bar', stacked=True)
 
 
+# In[ ]:
 
 
 #filtering date 

@@ -226,6 +226,7 @@ def hiresession(request):
     return render(request, 'hiresession.html', context=context )
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
+@login_required
 def payment(request):
     flag = False
     pay= False
