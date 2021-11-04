@@ -18,10 +18,12 @@ http://localhost:8000/admin/login/?next=/admin/
 3. Install Django using command line
    ```
    $ python -m pip install Django
-4. Run the web server
+4. Install stdnum using command line
+   $ python -m pip install python-stdnum
+5. Run the web server
    ```
    $ python manage.py runserver
-5. you can visit your Django project in your browser by using either http://127.0.0.1:8000 or http://localhost:8000
+6. you can visit your Django project in your browser by using either http://127.0.0.1:8000 or http://localhost:8000
 
 <h2>URLs</h2>
 
