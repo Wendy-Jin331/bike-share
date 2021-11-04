@@ -28,7 +28,7 @@ def query():
     print(end)
     
         
-    with sqlite3.connect('C:/Users/SRI$/Desktop/Glassgow/4084_lb1_team5_project/db.sqlite3') as db:cursor=db.cursor()
+    with sqlite3.connect('db.sqlite3') as db:cursor=db.cursor()
     query = "SELECT start_date_time,start_depot, COUNT(session_id) FROM bikecustomer_hiresession WHERE start_date_time BETWEEN datetime ("+ start +") AND datetime("+ end +") GROUP BY start_date_time, start_depot"
         #this is the connection to the local DB sqlite file. Change it as needed
     print(query)

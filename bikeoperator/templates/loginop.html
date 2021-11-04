@@ -9,25 +9,30 @@
 <body>
 <div class="wrapper">
   <div class="title">
-    <p style="margin-left: 10px;"><a href="http://127.0.0.1:8000/bikecustomer/"><input class="input-home" type=button name="back" value="Back"></a></p>
-    <center><h1>Welcome Operator</h1></center>
-    <p><a href="http://127.0.0.1:8000/bikeoperator/loginop"><input class="input-logout" type=button value="Log Out"></a></p>
+    <center><h1>Login as Operator</h1></center>
   </div>
-    <center><img src="http://cdn.onlinewebfonts.com/svg/img_507427.png" width=200 height=200/></center>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <center>
-        <div class="form-group">
-            <input class="input-home" type="submit" name="track" value="Track">   
-            <input class="input-home" type="submit" name="repair" value="Repair">       
-            <input class="input-home" type="submit" name="move" value="Move">
-        </div>
-    </center>
-    </form>
+    <div class="oplogin-form">
+       <center>
+
+          <img src="http://cdn.onlinewebfonts.com/svg/img_507427.png" width=100 height=100/>
+       
+      <form style="margin-top: 20px;" action="" method="POST">
+         {% csrf_token %}   
+         {{ form }}
+         <p>
+         <input class="input-login" type="submit" name="login" value="Login">
+         <p><a href="http://127.0.0.1:8000/bikecustomer/">Click to go back Home</a></p>
+         </p>
+         {% if flag1 %}
+         <p> {{ message }} </p>
+         {% endif %}
+       </form>
+      </center>
+    </div>
 </div>
  </body>
  <style>
-     html, body {
+    html, body {
       margin: 0px;
       padding: 0px;
       min-height: 100%;
@@ -41,14 +46,6 @@
       color: #6148F5;
       font-family:arial,sans-serif;
       display:grid;
-      grid-template-columns: 200px 1fr 200px;
-   }
-   .form-group{
-        display: grid;
-        grid-template-columns:auto auto auto;
-        width:60%;
-        margin-top:20px;
-        margin-left:120px;
    }
   .input-home{
     color:#6148F5;
@@ -71,20 +68,21 @@
     border-width: 1px;
     text-shadow:none;
   }
-  .input-logout{
+  .input-login{
       color:white;
       background:#6148F5;
       border-color: #6148F5;
       border-radius:40px;
       border-width: 1px;
-      height:40px;
-      width:160px;
+      height:30px;
+      width:140px;
       font:bold40px arial,sans-serif;
       text-shadow:none;
       font-size: 14px;
       font-family:arial,sans-serif;
+      margin-top: 20px;
     }
-    .input-logout:hover{
+    .input-login:hover{
       background:white;
       color:#6148F5;
       border-radius:40px;
@@ -92,5 +90,8 @@
       text-shadow:none;
     }
  </style>
-</html>
+ </html>
+
+
+
 {% endblock %}

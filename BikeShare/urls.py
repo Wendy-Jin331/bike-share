@@ -22,9 +22,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('bikemanager/', include('bikemanager.urls')),
     path('bikecustomer/', include('bikecustomer.urls')),
     path('bikeoperator/', include('bikeoperator.urls')),
-    path('', RedirectView.as_view(url='bikeoperator/', permanent=True)),
+    #path('home/', include('bikecustomer.urls')),
+    #path('', RedirectView.as_view(url='bikeoperator/', permanent=True)),
     #path('bikecustomer/',include('bikecustomer.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     #path('', TemplateView.as_view(template_name='home.html'), name='home'),

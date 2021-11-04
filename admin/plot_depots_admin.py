@@ -14,8 +14,8 @@ import matplotlib
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 
-string start_date
-string end_date
+start_date
+end_date
 
 # this is a function to get the user input from the text input box
 def getStart():
