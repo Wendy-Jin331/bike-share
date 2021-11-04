@@ -27,7 +27,7 @@ http://localhost:8000/admin/login/?next=/admin/
 
 <h2>Initial setup for Manager/Admin module</h2>
 
-1. Run the admin_refactored.py in any Python IDE such as Spyder or any other IDE
+1. Run the admin_refactored.py in admin folder in any Python IDE such as Spyder or any other IDE
 
 2. Enter date in YYYY-MM-DD format for the starting and ending dates. The program returns an error if the date is not formatted properly, and if there is corresponding data the graph will be displayed as a popup
 
