@@ -6,7 +6,7 @@ http://localhost:8000/admin/login/?next=/admin/
 
 
 
-<h2>Initial setup</h2>
+<h2>Initial setup for customer and operator module</h2>
 
 1. Clone the repository
 2. Open the project directory in commandline and setup venv
@@ -24,6 +24,12 @@ http://localhost:8000/admin/login/?next=/admin/
    ```
    $ python manage.py runserver
 6. you can visit your Django project in your browser by using either http://127.0.0.1:8000 or http://localhost:8000
+
+<h2>Initial setup for Manager/Admin module</h2>
+
+1. Run the admin_refactored.py in admin folder in any Python IDE such as Spyder or any other IDE
+
+2. Enter date in YYYY-MM-DD format for the starting and ending dates. The program returns an error if the date is not formatted properly, and if there is corresponding data the graph will be displayed as a popup
 
 <h2>URLs</h2>
 
