@@ -24,7 +24,8 @@ def query():
    # print(end)
     
         
-    with sqlite3.connect('E:/Glasgow/bikeshare_1/4084_lb1_team5_project-master/dbsqlite3.db') as db:cursor=db.cursor()
+    with sqlite3.connect(r'E:/Glasgow/bikeshare_1/4084_lb1_team5_project-master/dbsqlite3.db') as db:cursor=db.cursor()
+    #The program was written on Jeong Woo's system, which uses a Korean(East Asian) encoding system. add 'r' before the path to avoid encoding issues.
     query = "SELECT start_date_time,start_depot, COUNT(session_id) FROM bikecustomer_session WHERE start_date_time BETWEEN datetime ("+ start +") AND datetime("+ end +") GROUP BY start_date_time, start_depot"
     #this is the connection to the local DB sqlite file. Change it as needed
     #print(query)
