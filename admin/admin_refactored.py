@@ -75,12 +75,12 @@ def getEnd():
 
 # This is the section of code which creates the main window
 root.geometry('540x200')
-root.configure(background='#F0F8FF')
+root.configure(background='#E6F0FF')
 root.title('Glasgow Bike Sharing Service')
 
 
 # This is the section of code which creates a button
-Button(root, text='Make query', bg='#F0F8FF', font=('arial', 15, 'normal'), command=query).place(x=210, y=115)
+Button(root, text='Make query', bg='#4A628A', font=('Verdana', 15, 'normal'), command=query).place(x=210, y=115)
 
 
 # This is the section of code which creates a text input box
@@ -94,15 +94,15 @@ enddate.place(x=269, y=65)
 
 
 # This is the section of code which creates the a label
-Label(root, text='Enter date in YYYY-MM-DD format that you wish to access', bg='#F0F8FF', font=('arial', 12, 'normal')).place(x=69, y=35)
+Label(root, text='Enter date in YYYY-MM-DD format that you wish to access', bg='#E6F0FF', font=('Verdana', 10, 'normal')).place(x=69, y=35)
 
 
 # This is the section of code which creates the a label
-Label(root, text='From', bg='#F0F8FF', font=('arial', 12, 'normal')).place(x=19, y=65)
+Label(root, text='From', bg='#E6F0FF', font=('Verdana', 12, 'normal')).place(x=19, y=65)
 
 
 # This is the section of code which creates the a label
-Label(root, text='To', bg='#F0F8FF', font=('arial', 12, 'normal')).place(x=239, y=65)
+Label(root, text='To', bg='#E6F0FF', font=('Verdana', 12, 'normal')).place(x=239, y=65)
 
 
 root.mainloop()
